@@ -1,0 +1,28 @@
+# Model files — too large for git
+*.gguf
+*.bin
+*.safetensors
+checkpoints/
+merged-model/
+lora-adapter/
+data/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Conda / venv
+env/
+venv/
+
+# Weights & Biases
+wandb/
+
+# VS Code
+.vscode/
+
+# Logs
+logs/
+*.log
