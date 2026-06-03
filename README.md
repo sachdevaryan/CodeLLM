@@ -65,14 +65,14 @@ python train.py
 
 ## Project Structure
 
-codellm/
-├── dataset.py        # Download + format dataset
-├── train.py          # QLoRA fine-tuning
-├── merge.py          # Merge LoRA adapter into base model
-├── convert.py        # Export to GGUF + quantize
-├── eval.py           # HumanEval benchmark
-├── api_server.py     # FastAPI serving
-└── data/             # Formatted dataset (gitignored)
+- codellm/
+-   ├── dataset.py        # Download + format dataset
+-   ├── train.py          # QLoRA fine-tuning
+-   ├── merge.py          # Merge LoRA adapter into base model
+-   ├── convert.py        # Export to GGUF + quantize
+-   ├── eval.py           # HumanEval benchmark
+-   ├── api_server.py     # FastAPI serving
+-   └── data/             # Formatted dataset (gitignored)
 
 ## What I Learned
 
