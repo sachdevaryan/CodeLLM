@@ -27,3 +27,7 @@ wandb/
 # Logs
 logs/
 *.log
+
+codellm-fp16.gguf
+codellm-Q4_K_M.gguf
+codellm-Q8_0.gguf

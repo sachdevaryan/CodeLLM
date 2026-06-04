@@ -8,10 +8,10 @@ Converted to GGUF and served locally via Ollama. No cloud API required.
 | Model | HumanEval pass@1 | Tok/sec | RAM | Size |
 |---|---|---|---|---|
 | llama3.2:3b (base) | ~28% | ~18 | 2.5 GB | 2.0 GB |
-| codellm-Q4_K_M (fine-tuned) | TBD | TBD | TBD | TBD |
-| codellm-Q8_0 (fine-tuned) | TBD | TBD | TBD | TBD |
+| codellm-Q4_K_M (fine-tuned) | TBD | TBD | TBD | 1.9 GB |
+| codellm-Q8_0 (fine-tuned) | TBD | TBD | TBD | 3.2 GB |
 
-*HumanEval results will be updated after GGUF conversion and evaluation.*
+*HumanEval results will be updated after evaluation.*
 
 ## Training Results
 
@@ -32,8 +32,8 @@ Converted to GGUF and served locally via Ollama. No cloud API required.
 ## Stack
 
 - **Training:** PyTorch 2.11 + Unsloth + PEFT + TRL
-- **Quantization:** bitsandbytes 0.49 (4-bit NF4 QLoRA)
-- **Export:** llama.cpp GGUF conversion
+- **Quantization (training):** bitsandbytes 0.49 (4-bit NF4 QLoRA)
+- **Export:** llama.cpp GGUF conversion + quantization
 - **Serving:** Ollama + FastAPI
 - **Eval:** HumanEval pass@1
 - **Experiment tracking:** Weights & Biases
@@ -56,6 +56,16 @@ Dataset → Format → QLoRA Fine-tune → Merge → GGUF → Eval → Serve
 ## Training Curves
 
 ![eval/steps_per_second](wnb1.png) ![eval/samples_per_second](wnb2.png) ![eval/runtime](wnb3.png) ![eval/loss](wnb4.png) ![train/loss](wnb5.png) ![train/learning_rate](wnb6.png) ![train/grad_norm](wnb7.png) ![train/global_step](wnb8.png) ![train/epoch](wnb9.png) 
+
+## GGUF Conversion
+
+| Format | Size | BPW | Notes |
+|---|---|---|---|
+| fp16 | 6.1 GB | 16.00 | Baseline, not for inference |
+| Q8_0 | 3.2 GB | 8.50 | Near-lossless |
+| Q4_K_M | 1.9 GB | 5.01 | Recommended — best size/quality tradeoff |
+
+Converted using llama.cpp `convert_hf_to_gguf.py` + `llama-quantize`.
 
 ## Notes on RTX 5050 (Blackwell)
 
