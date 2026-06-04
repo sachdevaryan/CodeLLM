@@ -6,6 +6,7 @@ checkpoints/
 merged-model/
 lora-adapter/
 data/
+unsloth_compiled_cache
 
 # Python
 __pycache__/
